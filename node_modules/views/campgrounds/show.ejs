@@ -1,0 +1,54 @@
+<%- include("../partials/header") %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">
+				Yelp Camp
+			</p>
+			<div class="list-group">
+				<li class="list-group-item active">Info 1</li>
+				<li class="list-group-item">Info 2</li>
+				<li class="list-group-item">Info 3</li>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="border">
+				<img class="image-responsive show_image" src = "<%= campground.image %>">
+				<div class=" px-3 py-3">
+					<h4 class="float-right">
+						$9.00/night
+					</h4>
+					<h4><a>
+						<%=campground.name%>
+					</a></h4>
+					<p>
+						<%= campground.description %>	
+					</p>
+					<a class = "btn btn-warning" href = "/campgrounds/<%= campground._id %>/edit"> Edit </a>
+					<form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+						<button class="btn btn-danger" id="delete-form">Delete</button>
+					</form>
+				</div>
+				</div>
+			</div>
+			<div class="card card-body bg-light mt-3">
+				<div class="text-right">
+					<a class = "btn btn-success" href = "/campgrounds/<%= campground._id %>/comments/new"> Add New Comment </a>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<% campground.comments.forEach(function(comment){ %> 
+							<%= comment.author.username %>
+							<span class="float-right">10 days ago</span>
+							<p><%= comment.text %></p>	
+						<% })%> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+<%- include("../partials/footer") %>
